@@ -1,19 +1,15 @@
 <?php
-require_once __DIR__ . './Model/movie.php';
+require_once __DIR__ . '/Model/movie.php';
 
-  $Green_Lantern = new Movie('Green Lantern', 'DC' );
-  $Green_Lantern->genre = 'Action';
-  $Green_Lantern->setIsGood(20);
+$movies = [
+  new Movie('Green Lantern', 'DC', 'Action', 20),
+  new Movie('Avengers', 'Marvel', 'Action', 100),
+  new Movie('Black Widow', 'Marvel', 'Action', 70),
+  new Movie('Antman Quantummania', 'Marvel', 'Action', 40),
+  new Movie('Aquaman', 'DC', 'Action', 600)
+];
 
-  $Avengers = new Movie( 'Avengers', 'Marvel');
-  $Avengers->genre = 'Action';
-  $Avengers->setIsGood(100);
-
-  var_dump($Green_Lantern);
-  var_dump($Green_Lantern -> getFullName());
-  var_dump($Avengers);
-  var_dump($Avengers -> getFullName());
-
+var_dump($movies);
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +17,21 @@ require_once __DIR__ . './Model/movie.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- bootstrap -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <title>OOP MOVIES</title>
 </head>
 <body>
-  
+<div class="container d-flex">
+    <?php foreach($movies as $movie): ?>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $movie->getFullName() ?></h5>
+          <p class="card-text">Genre: <?php echo $movie->genre; ?></p>
+          <p class="card-text">Status: <?php echo $movie->isGood; ?></p>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
 </body>
 </html>
