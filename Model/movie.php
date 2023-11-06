@@ -17,7 +17,7 @@ class Movie {
       return "{$this->productors_company} {$this->name}";
     }
 
-    public function __construct($_name, $_productors_company, $_genre, $_punteggio ){
+    public function __construct($_name, $_productors_company, Genre $_genre , $_punteggio ){
       $this->name = $_name;
       $this->productors_company = $_productors_company;
       $this->genre = $_genre;

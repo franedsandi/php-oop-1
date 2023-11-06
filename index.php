@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . '/Model/movie.php';
+require_once __DIR__ . '/Model/genre.php';
 
 $movies = [
-  new Movie('Green Lantern', 'DC', 'Action', 20),
-  new Movie('Avengers', 'Marvel', 'Action', 100),
-  new Movie('Black Widow', 'Marvel', 'Action', 70),
-  new Movie('Antman Quantummania', 'Marvel', 'Action', 40),
-  new Movie('Aquaman', 'DC', 'Action', 600)
+  new Movie('Green Lantern', 'DC', new Genre('Action', 'Romance'), 20),
+  new Movie('Avengers', 'Marvel', new Genre('Action', 'Romance'), 100),
+  new Movie('Black Widow', 'Marvel', new Genre('Action', 'Romance'), 70),
+  new Movie('Antman Quantummania', 'Marvel', new Genre('Action', 'Romance'), 40),
+  new Movie('Aquaman', 'DC', new Genre('Action', 'Romance'), 600)
 ];
 
 var_dump($movies);
@@ -27,7 +28,7 @@ var_dump($movies);
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><?php echo $movie->getFullName() ?></h5>
-          <p class="card-text">Genre: <?php echo $movie->genre; ?></p>
+          <p class="card-text">Genre: <?php echo $movie->genre->getAllGenres(); ?></p>
           <p class="card-text">Status: <?php echo $movie->isGood; ?></p>
         </div>
       </div>
