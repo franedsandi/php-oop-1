@@ -1,6 +1,5 @@
 <?php
 class Movie {
-
     public $name;
     public $productors_company;
     public $genre;
@@ -23,5 +22,5 @@ class Movie {
       $this->genre = $_genre;
       $this->setIsGood($_punteggio);
     }
-  }
-  ?>
+}
+?>

@@ -27,7 +27,7 @@ var_dump($movies);
     <?php foreach($movies as $movie): ?>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title"><?php echo $movie->getFullName() ?></h5>
+          <h5 class="card-title"><?php echo $movie->getFullName(); ?></h5>
           <p class="card-text">Genre: <?php echo $movie->genre->getAllGenres(); ?></p>
           <p class="card-text">Status: <?php echo $movie->isGood; ?></p>
         </div>
