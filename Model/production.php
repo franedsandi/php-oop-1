@@ -1,5 +1,5 @@
 <?php
-class Movie {
+class production {
   public $name;
   public $productors_company;
   public $genre;
@@ -7,9 +7,9 @@ class Movie {
 
   public function setIsGood($punteggio) {
     if ($punteggio > 50) {
-      $this->isGood = 'is a good movie';
+      $this->isGood = 'is good ';
     } else {
-      $this->isGood = 'is a terrible movie';
+      $this->isGood = 'is terrible';
     }
   }
 
