@@ -52,7 +52,7 @@ require_once __DIR__ . './db/db.php';
 
     <ul class="list-group my-3" >
       <?php foreach($productions as $production): ?>
-        <li class="list-group-item" style="color:white; background-color: grey;"> <?php echo $production->getFullInfo() ?> Published: <?php echo $production->getYearsAgo() ?> years ago </li>
+        <li class="list-group-item" style="color:white; background-color: grey;"> <?php echo $production->getFullInfo() ?> <span style="font-weight: 600; color:yellow;" >Published: <?php echo $production->getYearsAgo() ?> years ago </span>  </li>
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
