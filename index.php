@@ -3,6 +3,7 @@
 try {
 require_once __DIR__ . './Traits/yearsAgo.php';
 require_once __DIR__ . './Model/production.php';
+require_once __DIR__ . "./Model/Media.php";
 require_once __DIR__ . './Model/movies.php';
 require_once __DIR__ . './Model/tvseries.php';
 require_once __DIR__ . './db/db.php';
@@ -21,16 +22,17 @@ require_once __DIR__ . './db/db.php';
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <title>OOP PRODUCTIONS</title>
 </head>
-<body>
-<div class="container d-flex flex-wrap">
+<body style="background-color: black;">
+<div class="container d-flex flex-wrap justify-content-between mt-5">
   <?php if(isset($error)): ?>
     <div class="alert alert-danger" role="alert">
       <?php echo $error ?>
     </div>
   <?php else: ?>
     <?php foreach($productions as $production): ?>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
+      <div class="card mb-5 p-3" style="width: 18rem; background-color: grey;">
+        <img src="img/<?php echo $production->image?->file_name ?? "$this->name" ?>" class="card-img-top" alt="<?php echo $production->image?->name ?? " " ?>" style="height: 380px; border-radius: 10px;">
+        <div class="card-body p-0 pt-3" style="color:white;">
           <h5 class="card-title text-uppercase"><?php echo $production->name; ?></h5>
           <p class="card-text text-uppercase">Media: <?php echo get_class($production) ?></p>
           <p class="card-text">Genre: <?php echo implode(" - ", $production->genre); ?></p>
@@ -48,9 +50,9 @@ require_once __DIR__ . './db/db.php';
       </div>
     <?php endforeach; ?>
 
-    <ul class="list-group my-3">
+    <ul class="list-group my-3" >
       <?php foreach($productions as $production): ?>
-        <li class="list-group-item"> <?php echo $production->getFullInfo() ?> Published: <?php echo $production->getYearsAgo() ?> years ago </li>
+        <li class="list-group-item" style="color:white; background-color: grey;"> <?php echo $production->getFullInfo() ?> Published: <?php echo $production->getYearsAgo() ?> years ago </li>
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>

@@ -7,6 +7,7 @@ class production {
   public $productors_company;
   public $genre;
   public $isGood;
+  public $image;
 
   public function setIsGood($punteggio) {
     if ($punteggio > 50) {
@@ -20,7 +21,7 @@ class production {
     return "{$this->productors_company} {$this->name}";
   }
   
-  public function __construct(string $_name, string $_productors_company, array $_genre , float $_punteggio, float $_year = null){
+  public function __construct(string $_name, string $_productors_company, array $_genre , float $_punteggio, float $_year = null, Media $_image=null){
     if(empty($_name)){
       throw new Exception("dont forget that everything have a name ... ");
     }else{
@@ -46,7 +47,13 @@ class production {
   }
     $this->setIsGood($_punteggio);
     $this->year = $_year;
+    $this->image = $_image;
   }
+
+  public function setImage(Media $_image){ 
+    $this->image = $_image;
+  }
+  
   public function getFullInfo(){
     return "Name: $this->name, Company: $this->productors_company , Genres:  ". implode(" & ", $this->genre);
 
