@@ -1,9 +1,10 @@
 <?php
-require_once __DIR__ . '/Model/production.php';
-require_once __DIR__ . '/Model/genre.php';
-require_once __DIR__ . '/Model/movies.php';
-require_once __DIR__ . '/Model/tvseries.php';
-require_once __DIR__ . './db.php'
+require_once __DIR__ . './Traits/yearsAgo.php';
+require_once __DIR__ . './Model/production.php';
+require_once __DIR__ . './Model/movies.php';
+require_once __DIR__ . './Model/tvseries.php';
+require_once __DIR__ . './db/db.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -22,13 +23,13 @@ require_once __DIR__ . './db.php'
         <div class="card-body">
           <h5 class="card-title text-uppercase"><?php echo $production->name; ?></h5>
           <p class="card-text text-uppercase">Media: <?php echo get_class($production) ?></p>
-          <p class="card-text">Genre: <?php echo $production->genre->getAllGenres(); ?></p>
+          <p class="card-text">Genre: <?php echo implode(" - ", $production->genre); ?></p>
           <p class="card-text">Status: <?php echo $production->isGood; ?></p>
           <?php if ($production instanceof movie) : ?>
-            <p class="card-text">Published Year: <?php echo $production->published_year; ?></p>
+            <p class="card-text">Published Year: <?php echo $production->year; ?></p>
             <p class="card-text">Running Time: <?php echo $production->running_time; ?></p>
           <?php elseif ($production instanceof tvserie) : ?>
-            <p class="card-text">Aired From Year: <?php echo $production->aired_from_year; ?></p>
+            <p class="card-text">Aired From Year: <?php echo $production->year; ?></p>
             <p class="card-text">Aired To Year: <?php echo $production->aired_to_year; ?></p>
             <p class="card-text">Number of Episodes: <?php echo $production->number_of_episodes; ?></p>
             <p class="card-text">Number of Seasons: <?php echo $production->number_of_seasons; ?></p>
@@ -36,6 +37,12 @@ require_once __DIR__ . './db.php'
         </div>
       </div>
     <?php endforeach; ?>
+
+    <ul class="list-group my-3">
+      <?php foreach($productions as $production): ?>
+        <li class="list-group-item"> <?php echo $production->getFullInfo() ?> Published: <?php echo $production->getYearsAgo() ?> years ago </li>
+      <?php endforeach; ?>
+    </ul>
 </div>
 </body>
 </html>

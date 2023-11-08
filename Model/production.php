@@ -1,9 +1,13 @@
 <?php
 class production {
+
+  use publishyears;
+  
   public $name;
   public $productors_company;
   public $genre;
   public $isGood;
+  public $year;
 
   public function setIsGood($punteggio) {
     if ($punteggio > 50) {
@@ -17,11 +21,16 @@ class production {
     return "{$this->productors_company} {$this->name}";
   }
   
-  public function __construct($_name, $_productors_company, Genre $_genre , $_punteggio ){
+  public function __construct(string $_name, string $_productors_company, array $_genre , float $_punteggio, float $_year = null){
     $this->name = $_name;
     $this->productors_company = $_productors_company;
     $this->genre = $_genre;
     $this->setIsGood($_punteggio);
+    $this->year = $_year;
+  }
+  public function getFullInfo(){
+    return "Name: $this->name, Company: $this->productors_company , Genres: ". implode(", ", $this->genre);
+
   }
 }
 ?>
