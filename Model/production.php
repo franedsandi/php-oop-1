@@ -2,7 +2,7 @@
 class production {
 
   use publishyears;
-  
+
   public $name;
   public $productors_company;
   public $genre;
@@ -24,12 +24,16 @@ class production {
   public function __construct(string $_name, string $_productors_company, array $_genre , float $_punteggio, float $_year = null){
     $this->name = $_name;
     $this->productors_company = $_productors_company;
-    $this->genre = $_genre;
+    if(empty($_genre)){
+      throw new Exception("there is no movie or tvserie witout any genre");
+    }else{
+      $this->genre = $_genre;
+    }
     $this->setIsGood($_punteggio);
     $this->year = $_year;
   }
   public function getFullInfo(){
-    return "Name: $this->name, Company: $this->productors_company , Genres: ". implode(", ", $this->genre);
+    return "Name: $this->name, Company: $this->productors_company , Genres:  ". implode(" & ", $this->genre);
 
   }
 }

@@ -1,10 +1,15 @@
 <?php
+
+try {
 require_once __DIR__ . './Traits/yearsAgo.php';
 require_once __DIR__ . './Model/production.php';
 require_once __DIR__ . './Model/movies.php';
 require_once __DIR__ . './Model/tvseries.php';
 require_once __DIR__ . './db/db.php';
 
+} catch (Exception $e){
+  $error = $e->getMessage();
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +23,11 @@ require_once __DIR__ . './db/db.php';
 </head>
 <body>
 <div class="container d-flex flex-wrap">
+  <?php if(isset($error)): ?>
+    <div class="alert alert-danger" role="alert">
+      <?php echo $error ?>
+    </div>
+  <?php else: ?>
     <?php foreach($productions as $production): ?>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -43,6 +53,7 @@ require_once __DIR__ . './db/db.php';
         <li class="list-group-item"> <?php echo $production->getFullInfo() ?> Published: <?php echo $production->getYearsAgo() ?> years ago </li>
       <?php endforeach; ?>
     </ul>
+  <?php endif; ?>
 </div>
 </body>
 </html>
