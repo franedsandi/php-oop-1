@@ -7,7 +7,6 @@ class production {
   public $productors_company;
   public $genre;
   public $isGood;
-  public $year;
 
   public function setIsGood($punteggio) {
     if ($punteggio > 50) {
