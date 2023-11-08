@@ -23,17 +23,17 @@ require_once __DIR__ . './db/db.php';
   <title>OOP PRODUCTIONS</title>
 </head>
 <body style="background-color: black;">
-<div class="container d-flex flex-wrap justify-content-between mt-5">
+<div class="container d-flex flex-wrap justify-content-center my-5" style="gap: 20px;">
   <?php if(isset($error)): ?>
     <div class="alert alert-danger" role="alert">
       <?php echo $error ?>
     </div>
   <?php else: ?>
     <?php foreach($productions as $production): ?>
-      <div class="card mb-5 p-3" style="width: 18rem; background-color: grey;">
+      <div class="card p-3" style="width: calc((100% / 4) - 15px); background-color: grey; border:3px solid yellow;">
         <img src="img/<?php echo $production->image?->file_name ?? "$this->name" ?>" class="card-img-top" alt="<?php echo $production->image?->name ?? " " ?>" style="height: 380px; border-radius: 10px;">
         <div class="card-body p-0 pt-3" style="color:white;">
-          <h5 class="card-title text-uppercase"><?php echo $production->name; ?></h5>
+          <h5 class="card-title text-uppercase mb-4"><?php echo $production->name; ?></h5>
           <p class="card-text text-uppercase">Media: <?php echo get_class($production) ?></p>
           <p class="card-text">Genre: <?php echo implode(" - ", $production->genre); ?></p>
           <p class="card-text">Status: <?php echo $production->isGood; ?></p>
@@ -49,13 +49,15 @@ require_once __DIR__ . './db/db.php';
         </div>
       </div>
     <?php endforeach; ?>
-
-    <ul class="list-group my-3" >
+  </div>
+  <div class="container mb-5">
+    <ul class="list-group my-3" style="width: 100%;">
       <?php foreach($productions as $production): ?>
-        <li class="list-group-item" style="color:white; background-color: grey;"> <?php echo $production->getFullInfo() ?> <span style="font-weight: 600; color:yellow;" >Published: <?php echo $production->getYearsAgo() ?> years ago </span>  </li>
+        <li class="list-group-item" style="color:white; background-color: grey; border:2px solid white; border-botom:1px;"> <?php echo $production->getFullInfo() ?> <span style="font-weight: 600; color:yellow;" >Published: <?php echo $production->getYearsAgo() ?> years ago </span>  </li>
       <?php endforeach; ?>
     </ul>
+  </div>
   <?php endif; ?>
-</div>
+
 </body>
 </html>
